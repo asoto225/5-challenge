@@ -27,11 +27,19 @@ $(function () {
 
     localStorage.setItem(timeBlk, userInput)
   })
+  var currntHour = dayjs().hour()
+  console.log(currntHour)
   for (let i = 9; i <= 17; i++){
     var timeBlk = "hour-"+i
     var storedUserInout = localStorage.getItem(timeBlk)
-    console.log(storedUserInout,timeBlk)
     $("#"+timeBlk).children("textarea").val(storedUserInout)
+    if(currntHour < i){
+      $("#"+timeBlk).addClass("future")
+    }else if(currntHour === i){
+      $("#"+timeBlk).addClass("present")
+    }else{
+      $("#"+timeBlk).addClass("past")
+    }
   }
-
+  $("#currentDay").text(dayjs().format('MM/DD/YYYY') )
 });
