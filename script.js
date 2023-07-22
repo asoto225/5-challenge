@@ -24,6 +24,14 @@ $(function () {
     var  userInput = $(this).siblings("textarea").val()
     var  timeBlk = $(this).parent().attr("id")
     console.log(userInput, timeBlk)
+
+    localStorage.setItem(timeBlk, userInput)
   })
+  for (let i = 9; i <= 17; i++){
+    var timeBlk = "hour-"+i
+    var storedUserInout = localStorage.getItem(timeBlk)
+    console.log(storedUserInout,timeBlk)
+    $("#"+timeBlk).children("textarea").val(storedUserInout)
+  }
 
 });
